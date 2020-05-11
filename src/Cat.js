@@ -1,5 +1,5 @@
 import React, {useContext} from 'react'
-import FeatureContext from './FeatureToggleProvider'
+import {FeatureContext} from './FeatureToggleProvider'
 
 export const Cat = () => {
   const featuresContext = useContext(FeatureContext)

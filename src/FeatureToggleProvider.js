@@ -9,11 +9,11 @@ const features = [
 const FeatureContext = React.createContext({features});
 export const FeatureProvider = FeatureContext.Provider;
 
- //const FeatureToggleProvider = ({children}) =>{
+ const FeatureToggleProvider = ({children}, ) =>{
 
-/*   return (<FeatureProvider>
+   return (<FeatureProvider>
     {children}
   </FeatureProvider>)
-} */
+} 
 
-export default FeatureContext
+export  {FeatureToggleProvider,FeatureContext}
