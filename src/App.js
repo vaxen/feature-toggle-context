@@ -1,20 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useContext} from 'react';
 import './App.css';
 import Cat from './Cat'
-import {FeatureToggleProvider} from './FeatureToggleProvider'
+import {FeatureToggleProvider,FeatureContext} from './FeatureToggleProvider'
+import LogoComponent from './LogoComponent';
+
+
 
 function App() {
+  const featuresContext = useContext(FeatureContext)
   return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-
-          <FeatureToggleProvider/>
+        <FeatureToggleProvider/>
+          <header className="App-header">
+            {featuresContext.isEnable("displayLogo") && (<LogoComponent />)}
             <Cat/>
-          <FeatureToggleProvider/>
-        </header>
-        
+          </header>
+        <FeatureToggleProvider/>
       </div>
   );
 }

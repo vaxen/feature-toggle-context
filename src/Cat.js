@@ -5,14 +5,12 @@ export const Cat = () => {
   const featuresContext = useContext(FeatureContext)
 
   const renderThings = featuresContext => {
-    console.log(featuresContext)
-    return featuresContext.features.map( f => {
-        return <li key={f.id}>{f.name} enable: {f.enabled.toString()}</li>
-    })
+    console.log(featuresContext.isEnable("cat"))
+    return <p>{featuresContext.isEnable("cat").toString()}</p>
   }
 
   return  (<div>
-          <p>Features are:</p>
+          <p>Is Cat 🐱 feature enabled?</p>
           <ul>
             {renderThings(featuresContext)}
           </ul>
