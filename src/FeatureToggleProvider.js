@@ -1,30 +1,38 @@
-import React from 'react'
+import React, { useState } from "react";
 
+//TODO: here you can set some static initial feature
+const initialFeatures = [];
 
-const features = [
-  {id: 1, name: 'cat', enabled: true},
-  {id: 2, name: 'learn', enabled: true},
-  {id: 3, name: 'displayLogo', enabled: false}
-]
+const FeatureContext = React.createContext({
+  features: initialFeatures,
+  isEnable: () => {},
+});
 
-const isEnable = featName =>{
-  if (features.some(e => e.name === featName && e.enabled === true)) {
-    return true
-  }
-  else return false
-}
-
-let featuresMap = new Map();
-featuresMap.set()
-
-const FeatureContext = React.createContext({features,isEnable});
 export const FeatureProvider = FeatureContext.Provider;
 
- const FeatureToggleProvider = ({children}, ) =>{
+const FeatureToggleProvider = ({ children }) => {
+  //TODO: now the features are injected by a static value, but you can fetch the data with useEffect
+  const initialFeatures = [
+    { id: 1, name: "cat", enabled: true },
+    { id: 2, name: "learn", enabled: true },
+    { id: 3, name: "displayLogo", enabled: true },
+  ];
 
-   return (<FeatureProvider>
-    {children}
-  </FeatureProvider>)
-} 
+  const [features, setFeatures] = useState(initialFeatures);
 
-export  {FeatureToggleProvider,FeatureContext}
+  const isEnable = (featName) => {
+    if (
+      initialFeatures.some((e) => e.name && (e.name === featName && e.enabled === true))
+    ) {
+      return true;
+    } else return false;
+  };
+
+  return (
+    <FeatureProvider value={{ features: features, isEnable: isEnable }}>
+      {children}
+    </FeatureProvider>
+  );
+};
+
+export { FeatureToggleProvider, FeatureContext };
